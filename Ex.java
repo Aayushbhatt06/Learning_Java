@@ -4,7 +4,7 @@ public class Ex {
         try{
             int a=5/0;
 
-        }catch(ArithmeticException e){
+        }catch(ArithmeticException e){ 
             System.out.println(e);
         }
             System.out.println("Exception Handeled");

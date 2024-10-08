@@ -1,4 +1,4 @@
-package Java_codes;
+
 import java.io.*;
 public class Throws {
     public static void findFile() throws IOException {

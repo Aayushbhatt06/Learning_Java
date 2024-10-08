@@ -1,4 +1,4 @@
-package Java_codes;
+
 import java.util.Scanner;
 public class noprime {
     public static void main(String[] args) {

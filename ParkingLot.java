@@ -1,4 +1,4 @@
-package Java_codes;
+
 class ParkingLot {
     int vno;
     int hours;

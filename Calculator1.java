@@ -2,7 +2,7 @@
 import java.util.Scanner;
 class cal{
     void add(double a, double b){
-        System.out.println(a+b);
+        System.out.println(a+b); 
     }
     void sub(double a, double b){
         System.out.println(a-b);

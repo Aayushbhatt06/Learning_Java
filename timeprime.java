@@ -1,4 +1,4 @@
-package Java_codes;
+
 public class timeprime {
     public static void main(String[] args) {
         int n = 40;

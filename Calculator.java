@@ -3,7 +3,7 @@ public class Calculator{
     double i;
     double j;
     void add(double i, double j){
-        System.out.println(i+j);
+        System.out.println(i+j); 
     }
     void sub(double i, double j){
         System.out.println(i-j);

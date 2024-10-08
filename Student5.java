@@ -1,4 +1,4 @@
-package Java_codes;
+
 public class Student5 {
     int id;
     String name;

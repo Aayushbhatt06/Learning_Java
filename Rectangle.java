@@ -1,4 +1,4 @@
-package Java_codes;
+
 class testRectangle {
     int length;
     int width;

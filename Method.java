@@ -22,9 +22,6 @@ class Method{
     s2.insert(21,"Atharva");
     s1.printVar();
     s2.printVar();
-    // Lecture1 l1=new Lecture1();
-    // l1.insert("Aayush");
-    // l1.display();
     }
     
 }
