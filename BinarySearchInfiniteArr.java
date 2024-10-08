@@ -1,5 +1,5 @@
 // position of the element in infinite sorted array
-// Amazon india interview question 
+// Previous years Amazon india interview question 
 
 
 public class BinarySearchInfiniteArr {

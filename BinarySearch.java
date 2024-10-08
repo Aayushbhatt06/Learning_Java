@@ -1,10 +1,11 @@
+// learned what is Binary search and why it is used
 public class BinarySearch{
     public static void main(String[] args) {
         int[] arr = {2,15,22,25,43,56,89,100,152,186};
         int ans = ceiling(arr, 56);
         System.out.println(ans);
     }
-
+ 
     static int ceiling(int[] arr, int target){
         int start = 0;
         int end = arr.length-1;

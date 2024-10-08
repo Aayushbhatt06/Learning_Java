@@ -1,8 +1,9 @@
+// Ceiling the number array using binary search 
 public class BinarySearch_Ceiling {
     public static void main(String[] args) {
         int[] arr = {2,15,22,25,43,56,89,100,152,186};
         int ans = ceiling(arr, 1);
-        System.out.println(ans);
+        System.out.println(ans); 
     }
 
     static int ceiling(int[] arr, int target){
