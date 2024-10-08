@@ -1,3 +1,4 @@
+// https://leetcode.com/problems/richest-customer-wealth
 public class LC_1672 {
     static int maximumWealth(int[][] accounts) {
         int n_customers = accounts.length;

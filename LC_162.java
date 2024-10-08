@@ -1,19 +1,20 @@
-//https://leetcode.com/problems/peak-index-in-a-mountain-array
-public class LC_852 {
+// Leet code 162
+// https://leetcode.com/problems/find-peak-element
+public class LC_162 {
     public static void main(String[] args) {
-        int[] arr = {0,10,5,2};
+        int[] arr = {1,2,3,1};
         int ans = search(arr);
         System.out.println(ans);
     }
-    static int search(int[] arr){
+    static int search(int[] nums){
         int start = 0;
-        int end = arr.length-1;
+        int end = nums.length-1;
         while(start<end){
             int mid = start + (end-start)/2;
-            if(arr[mid] > arr[mid+1]){
+            if(nums[mid] > nums[mid+1]){
 
                 end = mid;
-            }else if(arr[mid]<arr[mid+1]){
+            }else if(nums[mid]<nums[mid+1]){
                 start = mid + 1;
             }else{
                 return mid;
