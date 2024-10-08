@@ -1,4 +1,4 @@
-package Java_codes;
+
 public class Final {
     public static void main(String[] args) {
         try{

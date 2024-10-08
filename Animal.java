@@ -1,4 +1,4 @@
-package Java_codes;
+
 public class Animal {
     void eat(){
         System.out.println("Eating");

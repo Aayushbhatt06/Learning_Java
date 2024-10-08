@@ -1,4 +1,4 @@
-package Java_codes;
+
 public class Calculator{
     double i;
     double j;

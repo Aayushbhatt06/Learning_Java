@@ -1,4 +1,4 @@
-package Java_codes;
+
 class Employee {
     String name;
     int id;

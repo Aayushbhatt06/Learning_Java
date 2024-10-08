@@ -1,4 +1,4 @@
-package Java_codes;
+
 import java.util.Scanner;
 class cal{
     void add(double a, double b){

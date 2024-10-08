@@ -1,4 +1,4 @@
-package Java_codes;
+
 interface printable{
     void print();
 }

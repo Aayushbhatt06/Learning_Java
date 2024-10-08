@@ -1,4 +1,4 @@
-package Java_codes;
+
 public class Exnumformat {
     void display(){
         try{

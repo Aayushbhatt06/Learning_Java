@@ -1,4 +1,4 @@
-package Java_codes;
+
 public class Ex {
     void display(){
         try{
