@@ -1,0 +1,148 @@
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+
+class Database {
+
+    // Method to write song data to a file
+    static void saveToFile(String[][] arr, String fileName) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+        for (String[] song : arr) {
+            writer.write(String.join(",", song)); // Write song as comma-separated values
+            writer.newLine(); // Move to the next line for the next song
+        }
+        writer.close();
+    }
+
+    // Method to read song data from a file
+    static String[][] loadFromFile(String fileName) throws IOException {
+        List<String[]> songsList = new ArrayList<>();
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        String line;
+
+        while ((line = reader.readLine()) != null) {
+            songsList.add(line.split(",")); // Split each line by comma and add to list
+        }
+        reader.close();
+
+        // Convert list to 2D array
+        String[][] arr = new String[songsList.size()][4];
+        for (int i = 0; i < songsList.size(); i++) {
+            arr[i] = songsList.get(i);
+        }
+        return arr;
+    }
+}
+
+class Test extends Database {
+
+    public static void main(String[] args) {
+        String fileName = "songs.txt"; // File to store song data
+        String[][] arr = {};
+
+        // Load existing song data from file (if any)
+        try {
+            arr = loadFromFile(fileName);
+            System.out.println("Loaded Songs: " + Arrays.deepToString(arr));
+        } catch (IOException e) {
+            System.out.println("No previous data found. Please add songs to 'songs.txt'.");
+            return; // Exit if no songs are found
+        }
+
+        // Display all loaded songs
+        System.out.println("All Songs: " + Arrays.deepToString(arr));
+
+        // Create an instance of Recomend class for recommendations
+        Recomend recomend = new Recomend();
+        recomend.UserChoice(arr);
+    }
+}
+
+class Recomend extends Database {
+
+    void UserChoice(String[][] arr) {
+        Scanner in = new Scanner(System.in); // Define Scanner object for input
+        String[][] choice = new String[5][4]; // Assuming user can choose 5 songs
+        int numChoices = 0; // Count how many valid choices are made
+
+        // Display list of available songs
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println((i + 1) + ". " + arr[i][0]); // Print the song name
+        }
+
+        // Get user choice for up to 5 songs
+        while (numChoices < 5) {
+            System.out.print("Enter the number of your choice (or -1 to finish): ");
+            int input = in.nextInt(); // Capture user input (song index)
+
+            if (input == -1) {
+                break; // Exit if user wants to stop early
+            }
+
+            // Validate the input and add the song to the 'choice' array
+            if (input > 0 && input <= arr.length) {
+                choice[numChoices] = arr[input - 1]; // Add the selected song to the 'choice' array
+                System.out.println("You selected: " + Arrays.toString(arr[input - 1]));
+                numChoices++; // Increment the valid choices count
+            } else {
+                System.out.println("Invalid choice. Try again.");
+            }
+        }
+
+        recomend_main(choice, arr);
+    }
+
+    static void recomend_main(String[][] choice, String[][] arr) {
+        int[] singerCount = new int[arr.length];
+        int[] langCount = new int[arr.length];
+        int[] genreCount = new int[arr.length];
+
+        // Count how many times each language, singer, and genre appears in user selections
+        for (String[] selected : choice) {
+            if (selected == null || selected.length == 0) {
+                continue; // Skip empty selections
+            }
+
+            String selectedLang = selected[1];
+            String selectedSinger = selected[2];
+            String selectedGenre = selected[3];
+
+            // Count matches in the song database
+            for (int j = 0; j < arr.length; j++) {
+                if (arr[j][1].equals(selectedLang)) {
+                    langCount[j]++;
+                }
+                if (arr[j][2].equals(selectedSinger)) {
+                    singerCount[j]++;
+                }
+                if (arr[j][3].equals(selectedGenre)) {
+                    genreCount[j]++;
+                }
+            }
+        }
+
+        // Find the song that best matches based on the highest counts
+        int bestMatchIndex = -1;
+        int maxCount = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            int totalCount = langCount[i] + singerCount[i] + genreCount[i]; // Total matches
+            if (totalCount > maxCount) {
+                maxCount = totalCount;
+                bestMatchIndex = i;
+            }
+        }
+
+        // Recommend the best match song, or fallback to a random song
+        if (bestMatchIndex != -1 && maxCount > 0) {
+            System.out.println("Recommended song based on your input: " + Arrays.toString(arr[bestMatchIndex]));
+        } else {
+            Random random = new Random();
+            int randomIndex = random.nextInt(arr.length); // Random fallback
+            System.out.println("No strong match found. Recommending a random song instead: " + Arrays.toString(arr[randomIndex]));
+        }
+    }
+}
