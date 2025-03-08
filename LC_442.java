@@ -1,12 +1,15 @@
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
-public class LC_287 {
+public class LC_442 {
     public static void main(String[] args) {
         int[] nums = {4,3,2,7,8,2,3,1};
-        System.out.println(findDisappearedNumbers(nums));
+        System.out.println(findDuplicates(nums));
     }
 
-    static int findDisappearedNumbers(int[] nums) {
+
+    static List<Integer> findDuplicates(int[] nums) {
+
         int i = 0;
         // int correct = nums[i] - 1;
         while(i < nums.length){
@@ -21,19 +24,21 @@ public class LC_287 {
             }else{
                 i++;
             }
-        }System.out.println(Arrays.toString(nums));
-
+        }
+        // System.out.println(Arrays.toString(nums));
+        List<Integer> ans = new ArrayList<>();
         int a = 0;
         while(a<nums.length){
             if(nums[a] - 1 != a){
-                return nums[a];
+                ans.add(nums[a]);
             }
             a++;
 
         }
-        return -1;
-        
+        return ans;
         
     }
+
+
 
 }
