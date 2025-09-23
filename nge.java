@@ -13,15 +13,15 @@ public class nge {
         Stack<Integer> st = new Stack<>();
         int[] ans = new int[arr.length];
         for (int i = arr.length - 1; i >= 0; i--) {
-            while (!st.isEmpty() && st.peek() <= arr[i]) {
+            while (!st.isEmpty() && arr[st.peek()] <= arr[i]) {
                 st.pop();
             }
             if (st.isEmpty()) {
                 ans[i] = -1;
-            } else if (arr[i] < st.peek()) {
-                ans[i] = st.peek();
-            } 
-            st.push(arr[i]);
+            } else if (arr[i] < arr[st.peek()]) {
+                ans[i] = arr[st.peek()];
+            }
+            st.push(i);
         }
         return ans;
     }
