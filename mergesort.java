@@ -13,7 +13,6 @@ public class mergesort {
         L = divide(L);
         R = divide(R);
         return merge(L,R);
-
     }
 
     static int[] merge(int[] L,int[] R){

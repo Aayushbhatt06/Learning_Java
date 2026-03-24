@@ -1,3 +1,4 @@
+
 public class LL_rec {
 
     private Node head = null;
@@ -8,8 +9,8 @@ public class LL_rec {
         this.size = 0;
     }
 
-    // Node class
     private class Node {
+
         private Node next;
         private int val;
 
@@ -23,7 +24,6 @@ public class LL_rec {
         }
     }
 
-    // Insert at the end (iterative)
     public void insert(int val) {
         Node node = new Node(val);
         if (head == null) {
@@ -36,7 +36,6 @@ public class LL_rec {
         size++;
     }
 
-    // Recursive insert at given index (0-based index)
     public void insertRec(int index, int val) {
         if (index < 0 || index > size) {
             System.out.println("Index out of bounds");
@@ -54,7 +53,6 @@ public class LL_rec {
         return node;
     }
 
-    // Display function
     public void display() {
         Node temp = head;
         while (temp != null) {
@@ -64,10 +62,40 @@ public class LL_rec {
         System.out.println("null");
     }
 
+    public void deleteIndex(int i) {
+        if (head == null) {
+            return;
+        }
+        Node dummy = new Node(0);
+        dummy.next = head;
+        Node temp = dummy;
+        for (int j = 0; j < i; j++) {
+            if (temp.next == null) {
+                return;
+            }
+            temp = temp.next;
+        }
+        temp.next = temp.next.next;
+        head = dummy.next;
+    }
+
+    public void deleteVal(int n) {
+        Node dummy = new Node(0);
+        dummy.next = head;
+        Node temp = dummy;
+        while (temp.next != null) {
+            if (temp.next.val == n) {
+                temp.next = temp.next.next;
+                break;
+            }
+            temp = temp.next;
+        }
+        head = dummy.next;
+    }
+
     public static void main(String[] args) {
         LL_rec list = new LL_rec();
 
-        // Insert normally at end
         list.insert(1);
         list.insert(2);
         list.insert(3);
@@ -78,7 +106,6 @@ public class LL_rec {
         System.out.print("Before recursive insert: ");
         list.display();
 
-        // Insert recursively at index 3 (0-based indexing)
         list.insertRec(3, 9);
 
         System.out.print("After recursive insert: ");

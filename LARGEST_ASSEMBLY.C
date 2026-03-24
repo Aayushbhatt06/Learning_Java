@@ -1,0 +1,22 @@
+    AREA, FIBO, CODE, READONLY
+    EXPORT __MAIN
+__MAIN
+    MOVS R0,=0x0000F000
+    MOVS R1,#0
+    MOVS R2,#1
+    MOVS R3,#10
+LOOP
+    STRB R1,[R0],#1
+    SUBS R3,R3,#1
+    ADDS R4,R1,R2
+    MOV R1,R2
+    MOV R2,R4
+    B CHECK
+
+CHECK
+    CMP R3,#0
+    BGT LOOP
+    B EXIT
+EXIT 
+    B EXIT
+    END
